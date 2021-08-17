@@ -268,6 +268,7 @@ void 	a_to_b(int size, t_node **head1,
 	int pivot1;
 	int pivot2;
 	t_node *tmp;
+	printf("start head1: %p, head2: %p, tail1: %p, tail2: %p", head1, head2, tail1, tail2);
 
 	i = 0;
 	ra = 0;
