@@ -18,6 +18,11 @@ t_node *makenode(int num)
 	return (new);
 }
 
+void 	a_to_b(int size, t_node **head1,
+		t_node **head2, t_node **tail1, t_node **tail2);
+void 	b_to_a(int size, t_node **head1,
+		t_node **head2, t_node **tail1, t_node **tail2);
+
 void 	addnode_front(t_node **head, t_node **tail, int num)
 {
 	t_node *new;
@@ -30,7 +35,7 @@ void 	addnode_front(t_node **head, t_node **tail, int num)
 	else
 	{
 		(*head)->pre = new;
-		new->tail = *head;
+		new->next = *head;
 		*head = new;
 	}
 	return;
@@ -155,10 +160,10 @@ void ft_r(t_node **head, t_node **tail)
 	
 	tmp = *head;
 	*head = (*head)->next;
-	*head->pre = NULL;
+	(*head)->pre = NULL;
 	tmp->next = NULL;
 	tmp->pre = *tail;
-	*tail->next = tmp;
+	(*tail)->next = tmp;
 	return ;
 }
 
@@ -168,11 +173,20 @@ void ft_rr(t_node **head, t_node **tail)
 	
 	tmp = *tail;
 	*tail = (*tail)->pre;
-	*tail->next = NULL;
+	(*tail)->next = NULL;
 	tmp->next = *head;
-	tmp->pre = *NULL;
-	*head->pre = tmp;
+	tmp->pre = NULL;
+	(*head)->pre = tmp;
 	return ;
+}
+
+void ft_p(t_node **send_head, t_node **send_tail, t_node **rece_head, t_node **rece_tail)
+{
+	int num;
+	num = (*send_head)->num;
+	//need to fix this part
+	addnode_front(rece_head, rece_tail, num);
+	delete_front(send_head, send_tail);
 }
 
 void 	b_to_a(int size, t_node **head1,
@@ -181,7 +195,7 @@ void 	b_to_a(int size, t_node **head1,
 	int i;
 	int ra;
 	int rb;
-	int pb;
+	int pa;
 	int pivot1;
 	int pivot2;
 	t_node *tmp;
@@ -189,51 +203,59 @@ void 	b_to_a(int size, t_node **head1,
 	i = 0;
 	ra = 0;
 	rb = 0;
-	pb = 0;
+	pa = 0;
 	if (size < 3)
 	{
 		small_sorting(size, head2, tail2);
-		//starting next time
-		//while (i < size)
-			//ft_pa()
+		while (i < size)
+		{
+			ft_p(head2, tail2, head1, tail1);
+			printf("pa\n");
+		}
 		return ;
 	}
 	set_pivot(&pivot1, &pivot2, head1, tail1);
-	tmp = *head1;
+	tmp = *head2;
+	i = 0;
 	while (i < size - 1)
 	{
-		if (tmp->num >= pivot1)
+		if (tmp->num < pivot2)
 		{
-			ft_r(*head1, *tail1);
-			ra++;
+			ft_r(head2, tail2);
+			printf("rb\n");
+			rb++;
 		}
 		else
 		{
-			ft_pb(*head1, *head2);
-			pb++;
-			if (*head2->num >= pivot2)
+			ft_p(head2, tail2, head1, head2);
+			printf("pa\n");
+			pa++;
+			if ((*head2)->num < pivot1)
 			{
-				ft_r(*head2, *tail2);
-				rb++;
+				ft_r(head1, tail1);
+				printf("ra\n");
+				ra++;
 			}
 		}
 		i++;
 	}
+	a_to_b(pa - ra, head1, head2, tail1, tail2);
 	i = 0;
 	while (i < ra)
 	{
-		ft_rr(*head1, *tail1);
+		ft_rr(head1, tail1);
+		printf("rra\n");
 		i++;
 	}
 	i = 0;
 	while (i < rb)
 	{
-		ft_rr(*head2, *tail2);
+		ft_rr(head2, tail2);
+		printf("rrb\n");
 		i++;
 	}
-	a_to_b(ra,*head1, *head2, *tail1, *tail2);
-	b_to_a(rb,*head1, *head2, *tail1, *tail2);
-	b_to_a(pb - rb,*head1, *head2, *tail1, *tail2);
+	a_to_b(ra, head1, head2, tail1, tail2);
+	b_to_a(rb, head1, head2, tail1, tail2);
 }
 
 void 	a_to_b(int size, t_node **head1,
@@ -262,16 +284,19 @@ void 	a_to_b(int size, t_node **head1,
 	{
 		if (tmp->num >= pivot1)
 		{
-			ft_r(*head1, *tail1);
+			ft_r(head1, tail1);
+			printf("ra\n");
 			ra++;
 		}
 		else
 		{
-			ft_pb(*head1, *head2);
+			ft_p(head1, tail1, head2, tail2);
+			printf("pb\n");
 			pb++;
-			if (*head2->num >= pivot2)
+			if ((*head2)->num >= pivot2)
 			{
-				ft_r(*head2, *tail2);
+				ft_r(head2, tail2);
+				printf("rb\n");
 				rb++;
 			}
 		}
@@ -280,18 +305,20 @@ void 	a_to_b(int size, t_node **head1,
 	i = 0;
 	while (i < ra)
 	{
-		ft_rr(*head1, *tail1);
+		ft_rr(head1, tail1);
+		printf("rra\n");
 		i++;
 	}
 	i = 0;
 	while (i < rb)
 	{
-		ft_rr(*head2, *tail2);
+		ft_rr(head2, tail2);
+		printf("rrb\n");
 		i++;
 	}
-	a_to_b(ra,*head1, *head2, *tail1, *tail2);
-	b_to_a(rb,*head1, *head2, *tail1, *tail2);
-	b_to_a(pb - rb,*head1, *head2, *tail1, *tail2);
+	a_to_b(ra,head1, head2, tail1, tail2);
+	b_to_a(rb,head1, head2, tail1, tail2);
+	b_to_a(pb - rb, head1, head2, tail1, tail2);
 }
 
 
@@ -301,10 +328,8 @@ void	push_swap(t_node **head1, t_node **head2,
 	int size;
 
 	size = get_size(*head1);
-	printf("start sorting!", size);
-	//starting next time
-	//a_to_b(size, head1, head2, tail1, tail2);
-
+	printf("start sorting!\n");
+	a_to_b(size, head1, head2, tail1, tail2);
 	return;
 }
 
