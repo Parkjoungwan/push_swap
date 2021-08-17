@@ -278,7 +278,9 @@ void 	a_to_b(int size, t_node **head1,
 		small_sorting(size, head1, tail1);
 		return ;
 	}
+	printf("size is over 3\n");
 	set_pivot(&pivot1, &pivot2, head1, tail1);
+	printf("set pivot1: %d, pivot2: %d\n", pivot1, pivot2);
 	tmp = *head1;
 	while (i < size - 1)
 	{
@@ -290,6 +292,7 @@ void 	a_to_b(int size, t_node **head1,
 		}
 		else
 		{
+			printf("push to b\n");
 			ft_p(head1, tail1, head2, tail2);
 			printf("pb\n");
 			pb++;
@@ -329,6 +332,7 @@ void	push_swap(t_node **head1, t_node **head2,
 
 	size = get_size(*head1);
 	printf("start sorting!\n");
+	printf("start head1: %p, head2: %p, tail1: %p, tail2: %p", head1, head2, tail1, tail2);
 	a_to_b(size, head1, head2, tail1, tail2);
 	return;
 }
