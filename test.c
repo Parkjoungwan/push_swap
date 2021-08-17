@@ -25,9 +25,10 @@ void 	b_to_a(int size, t_node **head1,
 
 void 	addnode_front(t_node **head, t_node **tail, int num)
 {
+	//need to fix when head pointing null
 	t_node *new;
 	new = makenode(num);
-	if (*head == NULL)
+	if (*head == 0x0)
 	{
 		*head = new;
 		*tail = *head;
@@ -351,6 +352,8 @@ int	main()
 	addnode_back(&head1, &tail1, 2);
 	addnode_back(&head1, &tail1, 9);
 	addnode_back(&head1, &tail1, 6);
+	head2 = NULL;
+	tail2 = NULL;
 	push_swap(&head1, &head2, &tail1, &tail2);
 	//end program
 	while (head1 != NULL)
