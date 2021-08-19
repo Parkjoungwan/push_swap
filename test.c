@@ -157,6 +157,7 @@ void	set_pivot(int *pivot1, int *pivot2, t_node **head, t_node **tail)
 
 void ft_r(t_node **head, t_node **tail)
 {
+	//need to fix something
 	t_node *tmp;
 	
 	tmp = *head;
