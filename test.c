@@ -86,7 +86,7 @@ void	delete_front(t_node **head, t_node **tail)
 		return ;
 	t_node *tmp;
 	tmp = *head;
-	if (*tail == *head)
+	if ((*head)->next == NULL)
 	{
 		*head = NULL;
 		*tail = NULL;
@@ -111,8 +111,12 @@ int	get_size(t_node *head)
 	tmp = head;
 	while (tmp != NULL)
 	{
+		printf("node: %p\n", tmp);
 		size++;
 		tmp = tmp->next;
+		//testing
+		if (size > 6)
+			break;
 	}
 	return (size);
 }
@@ -136,17 +140,23 @@ void	set_pivot(int *pivot1, int *pivot2, t_node **head, t_node **tail)
 	int 	mid;
 	int 	i;
 	t_node	*tmp;
-
+	
 	i = 0;
+	printf("what?\n");
 	tmp = *head;
 	mid = get_size(*head) / 2;
+	printf("mid: %d\n", mid);
 	while (i < mid)
 	{
 		tmp = tmp->next;
+		printf("tmp: %p, tmp->next: %p\n", tmp, tmp->next);
 		i++;
 	}
 	*pivot1 = tmp->num;
+	//i think it's find? wait. 
+	//when head->next is null. it's error. i don't understand why are you here.
 	*pivot2 = tmp->next->num;
+	
 	if (*pivot1 < *pivot2)
 	{
 		i = *pivot1;
@@ -158,6 +168,8 @@ void	set_pivot(int *pivot1, int *pivot2, t_node **head, t_node **tail)
 void ft_r(t_node **head, t_node **tail)
 {
 	//need to fix something
+	if ((*head)->next == NULL)
+		return ;
 	t_node *tmp;
 	
 	tmp = *head;
@@ -171,6 +183,8 @@ void ft_r(t_node **head, t_node **tail)
 
 void ft_rr(t_node **head, t_node **tail)
 {
+	if ((*tail)->pre == NULL)
+		return ;
 	t_node *tmp;
 	
 	tmp = *tail;
@@ -201,6 +215,8 @@ void 	b_to_a(int size, t_node **head1,
 	int pivot1;
 	int pivot2;
 	t_node *tmp;
+	printf("b_to_a\n");
+	printf("size is %d\n", size);
 
 	i = 0;
 	ra = 0;
@@ -216,7 +232,7 @@ void 	b_to_a(int size, t_node **head1,
 		}
 		return ;
 	}
-	set_pivot(&pivot1, &pivot2, head1, tail1);
+	set_pivot(&pivot1, &pivot2, head2, tail2);
 	tmp = *head2;
 	i = 0;
 	while (i < size - 1)
@@ -270,7 +286,8 @@ void 	a_to_b(int size, t_node **head1,
 	int pivot1;
 	int pivot2;
 	t_node *tmp;
-	printf("start head1: %p, head2: %p, tail1: %p, tail2: %p", head1, head2, tail1, tail2);
+	printf("a_to_b\n");
+	printf("size is %d\n", size);
 
 	i = 0;
 	ra = 0;
@@ -279,9 +296,9 @@ void 	a_to_b(int size, t_node **head1,
 	if (size < 3)
 	{
 		small_sorting(size, head1, tail1);
+		printf("size is small!\n");
 		return ;
 	}
-	printf("size is over 3\n");
 	set_pivot(&pivot1, &pivot2, head1, tail1);
 	printf("set pivot1: %d, pivot2: %d\n", pivot1, pivot2);
 	tmp = *head1;
@@ -335,7 +352,6 @@ void	push_swap(t_node **head1, t_node **head2,
 
 	size = get_size(*head1);
 	printf("start sorting!\n");
-	printf("start head1: %p, head2: %p, tail1: %p, tail2: %p", head1, head2, tail1, tail2);
 	a_to_b(size, head1, head2, tail1, tail2);
 	return;
 }
