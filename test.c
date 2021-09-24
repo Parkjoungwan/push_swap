@@ -22,14 +22,16 @@ void 	a_to_b(int size, t_node **head1,
 		t_node **head2, t_node **tail1, t_node **tail2);
 void 	b_to_a(int size, t_node **head1,
 		t_node **head2, t_node **tail1, t_node **tail2);
+void check(t_node **head1, t_node **head2);
 
 void 	addnode_front(t_node **head, t_node **tail, int num)
 {
 	//need to fix when head pointing null
 	t_node *new;
 	new = makenode(num);
-	if (*head == 0x0)
+	if (*head == NULL)
 	{
+		printf("head was null\n");
 		*head = new;
 		*tail = *head;
 	}
@@ -111,7 +113,6 @@ int	get_size(t_node *head)
 	tmp = head;
 	while (tmp != NULL)
 	{
-		printf("node: %p\n", tmp);
 		size++;
 		tmp = tmp->next;
 		//testing
@@ -142,14 +143,11 @@ void	set_pivot(int *pivot1, int *pivot2, t_node **head, t_node **tail)
 	t_node	*tmp;
 	
 	i = 0;
-	printf("what?\n");
 	tmp = *head;
 	mid = get_size(*head) / 2;
-	printf("mid: %d\n", mid);
 	while (i < mid)
 	{
 		tmp = tmp->next;
-		printf("tmp: %p, tmp->next: %p\n", tmp, tmp->next);
 		i++;
 	}
 	*pivot1 = tmp->num;
@@ -171,13 +169,16 @@ void ft_r(t_node **head, t_node **tail)
 	if ((*head)->next == NULL)
 		return ;
 	t_node *tmp;
-	
-	tmp = *head;
-	*head = (*head)->next;
-	(*head)->pre = NULL;
+	t_node *fre;
+	int num;
+
+	num = (*head)->num;
+	tmp = makenode(num);
 	tmp->next = NULL;
 	tmp->pre = *tail;
 	(*tail)->next = tmp;
+	*tail = tmp;
+	delete_front(head, tail);
 	return ;
 }
 
@@ -185,14 +186,16 @@ void ft_rr(t_node **head, t_node **tail)
 {
 	if ((*tail)->pre == NULL)
 		return ;
-	t_node *tmp;
-	
-	tmp = *tail;
-	*tail = (*tail)->pre;
-	(*tail)->next = NULL;
+	t_node	*tmp;
+	int		num;
+
+	num = (*tail)->num;
+	tmp = makenode(num);
 	tmp->next = *head;
 	tmp->pre = NULL;
 	(*head)->pre = tmp;
+	*head = tmp;
+	delete_back(head, tail);
 	return ;
 }
 
@@ -215,13 +218,12 @@ void 	b_to_a(int size, t_node **head1,
 	int pivot1;
 	int pivot2;
 	t_node *tmp;
-	printf("b_to_a\n");
-	printf("size is %d\n", size);
 
 	i = 0;
 	ra = 0;
 	rb = 0;
 	pa = 0;
+	printf("==================b_to_a=======\nsize: %d\n", size);
 	if (size < 3)
 	{
 		small_sorting(size, head2, tail2);
@@ -229,6 +231,7 @@ void 	b_to_a(int size, t_node **head1,
 		{
 			ft_p(head2, tail2, head1, tail1);
 			printf("pa\n");
+			check(head1, head2);
 		}
 		return ;
 	}
@@ -247,6 +250,7 @@ void 	b_to_a(int size, t_node **head1,
 		{
 			ft_p(head2, tail2, head1, head2);
 			printf("pa\n");
+			check(head1, head2);
 			pa++;
 			if ((*head2)->num < pivot1)
 			{
@@ -257,6 +261,7 @@ void 	b_to_a(int size, t_node **head1,
 		}
 		i++;
 	}
+	printf("==================b_to_a=======end\n");
 	a_to_b(pa - ra, head1, head2, tail1, tail2);
 	i = 0;
 	while (i < ra)
@@ -286,21 +291,18 @@ void 	a_to_b(int size, t_node **head1,
 	int pivot1;
 	int pivot2;
 	t_node *tmp;
-	printf("a_to_b\n");
-	printf("size is %d\n", size);
 
 	i = 0;
 	ra = 0;
 	rb = 0;
 	pb = 0;
+	printf("==================a_to_b=======\nsize: %d\n", size);
 	if (size < 3)
 	{
 		small_sorting(size, head1, tail1);
-		printf("size is small!\n");
 		return ;
 	}
 	set_pivot(&pivot1, &pivot2, head1, tail1);
-	printf("set pivot1: %d, pivot2: %d\n", pivot1, pivot2);
 	tmp = *head1;
 	while (i < size - 1)
 	{
@@ -312,14 +314,17 @@ void 	a_to_b(int size, t_node **head1,
 		}
 		else
 		{
-			printf("push to b\n");
+			//this part was problem
+			//because head2 was changed but we didn't change head
 			ft_p(head1, tail1, head2, tail2);
 			printf("pb\n");
+			check(head1, head2);
 			pb++;
 			if ((*head2)->num >= pivot2)
 			{
 				ft_r(head2, tail2);
 				printf("rb\n");
+				check(head1, head2);
 				rb++;
 			}
 		}
@@ -330,6 +335,7 @@ void 	a_to_b(int size, t_node **head1,
 	{
 		ft_rr(head1, tail1);
 		printf("rra\n");
+		check(head1, head2);
 		i++;
 	}
 	i = 0;
@@ -337,8 +343,10 @@ void 	a_to_b(int size, t_node **head1,
 	{
 		ft_rr(head2, tail2);
 		printf("rrb\n");
+		check(head1, head2);
 		i++;
 	}
+	printf("==================a_to_b=======end\n");
 	a_to_b(ra,head1, head2, tail1, tail2);
 	b_to_a(rb,head1, head2, tail1, tail2);
 	b_to_a(pb - rb, head1, head2, tail1, tail2);
@@ -356,6 +364,54 @@ void	push_swap(t_node **head1, t_node **head2,
 	return;
 }
 
+void check(t_node **head1, t_node **head2)
+{
+	t_node *tmp;
+	int		i;
+
+	i = 0;
+	tmp = *head1;
+	printf ("**************************\n");
+	if (*head1 == NULL)
+		printf("head1은 비었습니다.\n");
+	else
+	{
+		printf("head1의 구성요소\n");
+		while(tmp != NULL)
+		{
+			printf("%p: %d\n",tmp, tmp->num);
+			tmp = tmp->next;
+			i++;
+			if (i > 6)
+			{
+				printf("주소가 잘못 됐어.\n");
+				break;
+			}
+		}
+		printf("\n");
+	}
+	tmp = *head2;
+	if (*head2 == NULL)
+		printf("head2는 비었습니다.\n");
+	else
+	{
+		printf("head2의 구성요소\n");
+		while(tmp != NULL)
+		{
+			printf("%p: %d\n",tmp, tmp->num);
+			tmp = tmp->next;
+			i++;
+			if (i > 6)
+			{
+				printf("주소가 잘못 됐어.\n");
+				break;
+			}
+		}
+		printf("\n");
+	}
+	printf ("**************************\n");
+}
+
 int	main()
 {
 	//set listA & B
@@ -371,6 +427,7 @@ int	main()
 	addnode_back(&head1, &tail1, 6);
 	head2 = NULL;
 	tail2 = NULL;
+	check(&head1, &head2);
 	push_swap(&head1, &head2, &tail1, &tail2);
 	//end program
 	while (head1 != NULL)
