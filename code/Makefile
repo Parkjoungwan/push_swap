@@ -8,10 +8,13 @@ SRCS =  main.c\
 		functions/node_functions.c\
 		functions/itoa.c\
 		functions/check.c\
+		functions/push_swap.c\
+		functions/push_swap_utils.c\
+		functions/node_control.c
 
 CC = gcc
 
-FLAGS = -o $(NAME) -g -ggdb -Wall -Wextra -Werror
+FLAGS = -o $(NAME) -Wall -Wextra -Werror
 
 INCLUDES = -I./includes
 

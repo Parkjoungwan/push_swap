@@ -53,6 +53,7 @@ void 	ft_addnode_back(t_nodes *node, int num)
 void	ft_delete_back(t_nodes *a)
 {
 	t_node *tmp;
+
 	tmp = a->tail;
 	if (a->head == NULL)
 		return ;
@@ -70,21 +71,22 @@ void	ft_delete_back(t_nodes *a)
 	return;
 }
 
-void	delete_front(t_node **head, t_node **tail)
+void	ft_delete_front(t_nodes *a)
 {
-	if (*head == NULL)
+	t_node	*tmp;
+
+	tmp = a->head;
+	if (a->head == NULL)
 		return ;
-	t_node *tmp;
-	tmp = *head;
-	if ((*head)->next == NULL)
+	if (a->head == a->tail)
 	{
-		*head = NULL;
-		*tail = NULL;
+		a->tail = NULL;
+		a->head = NULL;
 	}
 	else
 	{
 		tmp->next->pre = NULL;
-		*head = tmp->next;
+		a->head = tmp->next;
 	}
 	free(tmp);
 	return;
