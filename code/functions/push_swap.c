@@ -58,7 +58,7 @@ void	a_to_b(int size, t_nodes *a, t_nodes *b)
 		return ;
 	}
 	set_pivot(&vals, a, size);
-	while (vals.i < size - 1)
+	while (vals.i < size)
 		pivot_check(&vals, a, b);
 	vals.i = 0;
 	ft_rrr(vals, a, b);
@@ -78,7 +78,7 @@ void	b_to_a(int size, t_nodes *a, t_nodes *b)
 		return ;
 	}
 	set_pivot(&vals, b, size);
-	while(vals.i < size - 1)
+	while(vals.i < size)
 		pivot_check2(&vals, a, b);
 	a_to_b(vals.pa - vals.ra, a, b);
 	ft_rrr(vals, a, b);

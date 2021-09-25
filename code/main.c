@@ -38,6 +38,5 @@ int		main(int argc, char *argv[])
 		ft_delete_back(&a);
 	while (b.head != NULL)
 		ft_delete_back(&b);
-	while (1);
 	return 0;
 }

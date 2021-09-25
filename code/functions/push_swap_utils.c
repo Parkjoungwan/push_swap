@@ -25,6 +25,7 @@ void	small_sort(int size, t_nodes *a)
 		{
 			a->head->num = tmp2;
 			a->head->next->num = tmp1;
+			write(1, "sa\n", 3);
 		}
 	}
 	return ;
@@ -45,6 +46,7 @@ void	small_sort2(int size, t_nodes *a, t_nodes *b)
 		{
 			b->head->num = tmp2;
 			b->head->next->num = tmp1;
+			write(1, "sb\n", 3);
 		}
 	}
 	while (i < size)
