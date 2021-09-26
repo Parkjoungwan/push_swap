@@ -22,7 +22,6 @@ void	init(t_nodes *a, t_nodes *b, char **argv, int argc)
 	b->head = NULL;
 	b->tail = NULL;
 	free(nums);
-	ft_check_node(*a, *b);
 	return ;
 }
 
@@ -34,6 +33,7 @@ int		main(int argc, char *argv[])
 	else
 		exit(1);
 	ft_push_swap(argc - 1, &a, &b);
+	ft_check_node(a, b);
 	while (a.head != NULL)
 		ft_delete_back(&a);
 	while (b.head != NULL)

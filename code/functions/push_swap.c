@@ -89,10 +89,6 @@ void	b_to_a(int size, t_nodes *a, t_nodes *b)
 
 void	ft_push_swap(int size, t_nodes *a, t_nodes *b)
 {
-	write(1, "===============\n", 16);
-	write(1, "starting...\n", 12);
 	a_to_b(size, a, b);
-	write(1, "===============\n", 16);
-	ft_check_node(*a, *b);
 	return ;
 }
