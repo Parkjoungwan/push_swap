@@ -10,7 +10,8 @@ SRCS =  main.c\
 		functions/check.c\
 		functions/push_swap.c\
 		functions/push_swap_utils.c\
-		functions/node_control.c
+		functions/node_control.c\
+		functions/optimize.c
 
 CC = gcc
 
@@ -27,7 +28,7 @@ clean :
 ifeq (exist, $(shell [ -e $(NAME) ] && echo exist))
 	rm $(NAME)
 else
-	@printf "No file\n"
+	@printf "No file to remove\n"
 endif
 
 re : clean all

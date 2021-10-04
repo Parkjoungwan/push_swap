@@ -46,3 +46,4 @@ void    small_sort2(int size, t_nodes *a,t_nodes *b);
 void    set_pivot(t_sort *vals, t_nodes *a, int size);
 void    b_to_a(int size, t_nodes *a, t_nodes *b);
 void    a_to_b(int size, t_nodes *a, t_nodes *b);
+void    ft_optimize(int size, t_nodes *a,t_nodes *b);

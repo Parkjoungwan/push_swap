@@ -28,12 +28,11 @@ void	init(t_nodes *a, t_nodes *b, char **argv, int argc)
 int		main(int argc, char *argv[])
 {
 	t_nodes	a, b;
+
 	if (argc != 1 && argc != 0)
 		init(&a, &b, argv, argc);
 	else
 		exit(1);
-	//need to check
-	ft_error(argc, argv);
 	ft_push_swap(argc - 1, &a, &b);
 	ft_check_node(a, b);
 	while (a.head != NULL)
@@ -41,4 +40,4 @@ int		main(int argc, char *argv[])
 	while (b.head != NULL)
 		ft_delete_back(&b);
 	return 0;
-}`
+}
