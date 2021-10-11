@@ -11,7 +11,9 @@ SRCS =  main.c\
 		functions/push_swap.c\
 		functions/push_swap_utils.c\
 		functions/node_control.c\
-		functions/optimize.c
+		functions/optimize3.c\
+		functions/optimize3_1.c\
+		functions/optimize5.c
 
 CC = gcc
 

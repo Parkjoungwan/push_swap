@@ -89,6 +89,10 @@ void	b_to_a(int size, t_nodes *a, t_nodes *b)
 
 void	ft_push_swap(int size, t_nodes *a, t_nodes *b)
 {
-	a_to_b(size, a, b);
+	int flag;
+
+	flag = ft_optimize(size, a, b);
+	if(flag)
+		a_to_b(size, a, b);
 	return ;
 }

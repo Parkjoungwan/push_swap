@@ -1,5 +1,17 @@
 #include "push_swap.h"
 
+void	ft_s(t_nodes *a)
+{
+	int tmp1;
+	int tmp2;
+
+	tmp1 = a->head->num;
+	tmp2 = a->head->next->num;
+	a->head->num = tmp2;
+	a->head->next->num = tmp1;
+	return ;
+}
+
 void	ft_p(t_nodes *go, t_nodes *co)
 {
 	int num;
