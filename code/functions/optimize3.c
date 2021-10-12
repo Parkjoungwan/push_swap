@@ -53,6 +53,8 @@ void	ft_forthree(t_nodes *a)
 	int	*num;
 	int three_case;
 
+	if(!ft_sorted(a))
+		return ;
 	num = ft_threeinit(a);
 	three_case = ft_threecase(num);
 	free(num);

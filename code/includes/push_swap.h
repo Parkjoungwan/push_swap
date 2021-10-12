@@ -25,6 +25,15 @@ typedef struct	s_sort
 	int				i;
 }				t_sort;
 
+typedef struct	s_five
+{
+	int	a1;
+	int	a2;
+	int	a3;
+	int	b1;
+	int	b2;
+}				t_five;
+
 int     ft_space(char c);
 int     ft_atoi(char *str);
 void    ft_addnode_front(t_nodes *node, int num);
@@ -55,3 +64,15 @@ void    ft_three_four(t_nodes *a);
 void    ft_three_five(t_nodes *a);
 void    ft_forfive(t_nodes *a, t_nodes *b);
 void    ft_forthree(t_nodes *a);
+int	    ft_sorted(t_nodes *a);
+void    ft_fiveone(t_nodes *a, t_nodes *b);
+void    ft_fivetwo(t_nodes *a, t_nodes *b);
+void    ft_fivethree(t_nodes *a, t_nodes *b);
+void    ft_fivefour(t_nodes *a, t_nodes *b);
+void    ft_fivefive(t_nodes *a, t_nodes *b);
+void    ft_fivesix(t_nodes *a, t_nodes *b);
+void    ft_fiveseven(t_nodes *a, t_nodes *b);
+void    ft_fiveeight(t_nodes *a, t_nodes *b);
+void    ft_fivenine(t_nodes *a, t_nodes *b);
+void    ft_fiveten(t_nodes *a, t_nodes *b);
+void    ft_casediv(int num, t_nodes *a, t_nodes *b);
