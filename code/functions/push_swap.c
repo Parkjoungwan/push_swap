@@ -57,6 +57,13 @@ void	a_to_b(int size, t_nodes *a, t_nodes *b)
 		small_sort(size, a);
 		return ;
 	}
+	if (size == 3)
+	{
+		ft_threea(a, b);
+		return ;
+	}
+	if (!ft_sorted_size(a, size))
+		return ;
 	set_pivot(&vals, a, size);
 	while (vals.i < size)
 		pivot_check(&vals, a, b);

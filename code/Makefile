@@ -13,6 +13,7 @@ SRCS =  main.c\
 		functions/node_control.c\
 		functions/optimize3.c\
 		functions/optimize3_1.c\
+		functions/optimize3_2.c\
 		functions/optimize5.c\
 		functions/sorted.c\
 		functions/optimize5_1.c\

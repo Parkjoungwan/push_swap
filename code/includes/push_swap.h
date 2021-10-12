@@ -76,3 +76,7 @@ void    ft_fiveeight(t_nodes *a, t_nodes *b);
 void    ft_fivenine(t_nodes *a, t_nodes *b);
 void    ft_fiveten(t_nodes *a, t_nodes *b);
 void    ft_casediv(int num, t_nodes *a, t_nodes *b);
+int     ft_sorted_size(t_nodes *a, int size);
+int     *ft_threeinit(t_nodes *a);
+int     ft_threecase(int *num);
+void    ft_threea(t_nodes *a, t_nodes *b);
