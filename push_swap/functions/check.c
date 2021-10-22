@@ -78,3 +78,38 @@ void			ft_check_node(t_nodes a, t_nodes b)
 	free(b_nums);
 	return ;
 }
+
+int			ft_rrcheck(t_sort *val, t_nodes *a)
+{	
+	t_node	*tmp;
+	int		*nums;
+	int		cnt;
+
+	cnt = 0;
+	if (!(nums = malloc(sizeof(int) * val->size - val->i)))
+		exit(1);
+	tmp = a->head;
+	while (cnt < (val->size - val->i))
+	{
+		nums[cnt] = tmp->num;
+		cnt++;
+		tmp = tmp->next;
+	}
+	cnt = 0;
+	while (cnt < (val->size - val->i))
+	{
+		if(nums[cnt] < val->pivot1)
+		{
+			cnt = -1;
+			break;
+		}
+		cnt++;
+	}
+	free(nums);
+	if (cnt != -1)
+	{
+		val->i = val->size;
+		return 0;
+	}
+	return 1;
+}

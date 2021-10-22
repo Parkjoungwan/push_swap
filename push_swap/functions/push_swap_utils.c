@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	sort_init(t_sort *vals)
+void	sort_init(t_sort *vals, int size)
 {
 	vals->ra = 0;
 	vals->rb = 0;
@@ -9,6 +9,7 @@ void	sort_init(t_sort *vals)
 	vals->pivot1 = 0;
 	vals->pivot2 = 0;
 	vals->i = 0;
+	vals->size = size;
 	return ;
 }
 

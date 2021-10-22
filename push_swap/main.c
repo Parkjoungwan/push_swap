@@ -1,5 +1,28 @@
 #include "push_swap.h"
 
+void	ft_dupcheck(int *nums, int argc)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < argc - 1)
+	{
+		j = 0;
+		while(j < argc - 1)
+		{
+			if (nums[i] == nums[j] && i != j)
+			{
+				free(nums);
+				exit(1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return ;
+}
+
 void	init(t_nodes *a, t_nodes *b, char **argv, int argc)
 {
 	int i;
@@ -13,6 +36,7 @@ void	init(t_nodes *a, t_nodes *b, char **argv, int argc)
 		nums[i] = ft_atoi(argv[i + 1]);
 		i++;
 	}
+	ft_dupcheck(nums, argc);
 	i = 0;
 	while (i < (argc - 1))
 	{

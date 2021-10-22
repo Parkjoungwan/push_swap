@@ -45,8 +45,8 @@ void	ft_threea_five(t_nodes *a, t_nodes *b)
 	write(1, "pb\n", 3);
 	ft_s(a);
 	write(1, "sa\n", 3);
-	ft_p(a, b);
-	write(1, "pb\n", 3);
+	ft_p(b, a);
+	write(1, "pa\n", 3);
 	ft_s(a);
 	write(1, "sa\n", 3);
 	return ;

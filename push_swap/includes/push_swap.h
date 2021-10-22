@@ -23,6 +23,7 @@ typedef struct	s_sort
 	int				pivot1;
 	int				pivot2;
 	int				i;
+	int				size;
 }				t_sort;
 
 typedef struct	s_five
@@ -49,7 +50,7 @@ void    ft_r(t_nodes *go);
 void    ft_p(t_nodes *go, t_nodes *co);
 int     ft_numlen(int n);
 void    ft_push_swap(int size, t_nodes *a, t_nodes *b);
-void    sort_init(t_sort *vals);
+void    sort_init(t_sort *vals, int size);
 void    small_sort(int size, t_nodes *a);
 void    small_sort2(int size, t_nodes *a,t_nodes *b);
 void    set_pivot(t_sort *vals, t_nodes *a, int size);
@@ -80,3 +81,4 @@ int     ft_sorted_size(t_nodes *a, int size);
 int     *ft_threeinit(t_nodes *a);
 int     ft_threecase(int *num);
 void    ft_threea(t_nodes *a, t_nodes *b);
+int         ft_rrcheck(t_sort *val, t_nodes *a);
