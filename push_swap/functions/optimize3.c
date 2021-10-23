@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <limits.h>
 
 int	*ft_threeinit(t_nodes *a)
 {

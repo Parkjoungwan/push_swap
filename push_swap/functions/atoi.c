@@ -6,7 +6,7 @@
 /*   By: joupark <joupark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 17:43:49 by joupark           #+#    #+#             */
-/*   Updated: 2021/10/23 19:11:14 by joupark          ###   ########.fr       */
+/*   Updated: 2021/10/23 21:47:52 by joupark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,14 @@ void	ft_isdigit(char chr)
 	return ;
 }
 
-int	ft_re()
+void	ft_re(int pm, unsigned long result)
 {
-	write(1, "Error\n", 6);
-	exit(1);
+	if (pm == 1 || result > 2147483648)
+	{
+		write(1, "Error\n", 6);
+		exit(1);
+	}
+	return ;
 }
 
 int	ft_atoi(char *str)
@@ -59,7 +63,7 @@ int	ft_atoi(char *str)
 		result += *str - '0';
 		str++;
 	}
-	if (result > 2147483647)
-		return (ft_re());
+	if (result >= 2147483648)
+		ft_re(pm, result);
 	return (result * pm);
 }
