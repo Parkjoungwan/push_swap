@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joupark <joupark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/23 18:22:27 by joupark           #+#    #+#             */
+/*   Updated: 2021/10/23 18:23:50 by joupark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	sort_init(t_sort *vals, int size)
@@ -15,8 +27,8 @@ void	sort_init(t_sort *vals, int size)
 
 void	small_sort(int size, t_nodes *a)
 {
-	int		tmp1;
-	int		tmp2;
+	int	tmp1;
+	int	tmp2;
 
 	if (size == 2)
 	{
@@ -34,16 +46,16 @@ void	small_sort(int size, t_nodes *a)
 
 void	small_sort2(int size, t_nodes *a, t_nodes *b)
 {
-	int		tmp1;
-	int		tmp2;
-	int		i;
+	int	tmp1;
+	int	tmp2;
+	int	i;
 
 	i = 0;
 	if (size == 2)
 	{
 		tmp1 = b->head->num;
 		tmp2 = b->head->next->num;
-		if(tmp1 < tmp2)
+		if (tmp1 < tmp2)
 		{
 			b->head->num = tmp2;
 			b->head->next->num = tmp1;
@@ -59,27 +71,54 @@ void	small_sort2(int size, t_nodes *a, t_nodes *b)
 	return ;
 }
 
+int	*bubble_sort(int *nums, int size)
+{
+	int	i;
+	int	j;
+	int	tmp;
+
+	i = 0;
+	j = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (j < size - 1)
+		{
+			if (nums[j] > nums[j + 1])
+			{
+				tmp = nums[j];
+				nums[j] = nums[j + 1];
+				nums[j + 1] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (nums);
+}
+
 void	set_pivot(t_sort *vals, t_nodes *a, int size)
 {
-	int		mid;
+	int		*nums;
 	int		i;
 	t_node	*tmp;
 
-	mid = size / 2;
-	i = 0;
+	i = 1;
 	tmp = a->head;
-	while(i < mid)
+	nums = malloc(sizeof(int) * size);
+	if (!nums)
+		exit(1);
+	nums[0] = tmp->num;
+	while (i < size)
 	{
 		tmp = tmp->next;
+		nums[i] = tmp->num;
 		i++;
 	}
-	vals->pivot1 = tmp->num;
-	vals->pivot2 = tmp->next->num;
-	if (vals->pivot1 < vals->pivot2)
-	{
-		i = vals->pivot1;
-		vals->pivot1 = vals->pivot2;
-		vals->pivot2 = i;
-	}
+	nums = bubble_sort(nums, size);
+	i = size / 3;
+	vals->pivot1 = nums[i * 2];
+	vals->pivot2 = nums[i];
+	free(nums);
 	return ;
 }

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joupark <joupark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/23 17:52:02 by joupark           #+#    #+#             */
+/*   Updated: 2021/10/23 18:27:33 by joupark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static int		*ft_check_size(t_nodes a, int *size)
+static int	*ft_check_size(t_nodes a, int *size)
 {
 	t_node	*tmp;
 	int		*result;
@@ -14,7 +26,8 @@ static int		*ft_check_size(t_nodes a, int *size)
 		tmp = tmp->next;
 		(*size)++;
 	}
-	if (!(result = malloc(sizeof(int) * (*size))))
+	result = malloc(sizeof(int) * (*size));
+	if (!result)
 		exit(1);
 	tmp = a.head;
 	while (tmp != NULL)
@@ -26,9 +39,9 @@ static int		*ft_check_size(t_nodes a, int *size)
 	return (result);
 }
 
-static void		ft_write(int num)
+static void	ft_write(int num)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = ft_itoa(num);
 	write(1, tmp, ft_numlen(num));
@@ -36,7 +49,7 @@ static void		ft_write(int num)
 	return ;
 }
 
-static void		ft_prin(int *a, int *b, int a_size, int b_size)
+static void	ft_prin(int *a, int *b, int a_size, int b_size)
 {
 	int		total;
 
@@ -61,11 +74,11 @@ static void		ft_prin(int *a, int *b, int a_size, int b_size)
 	return ;
 }
 
-void			ft_check_node(t_nodes a, t_nodes b)
+void	ft_check_node(t_nodes a, t_nodes b)
 {
-	int a_size;
-	int b_size;
-	int *a_nums;
+	int	a_size;
+	int	b_size;
+	int	*a_nums;
 	int	*b_nums;
 
 	a_nums = ft_check_size(a, &a_size);
@@ -77,40 +90,4 @@ void			ft_check_node(t_nodes a, t_nodes b)
 	free(a_nums);
 	free(b_nums);
 	return ;
-}
-
-int			ft_rrcheck(t_sort *val, t_nodes *a)
-{
-	//need to fix
-	t_node	*tmp;
-	int		*nums;
-	int		cnt;
-
-	cnt = 0;
-	if (!(nums = malloc(sizeof(int) * (val->size - val->i))))
-		exit(1);
-	tmp = a->head;
-	while (cnt < (val->size - val->i))
-	{
-		nums[cnt] = tmp->num;
-		cnt++;
-		tmp = tmp->next;
-	}
-	cnt = 0;
-	while (cnt < (val->size - val->i))
-	{
-		if(nums[cnt] < val->pivot1)
-		{
-			cnt = -1;
-			break;
-		}
-		cnt++;
-	}
-	free(nums);
-	if (cnt != -1)
-	{
-		val->i = val->size;
-		return 1;
-	}
-	return 0;
 }

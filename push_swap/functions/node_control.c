@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   node_control.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joupark <joupark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/23 18:03:56 by joupark           #+#    #+#             */
+/*   Updated: 2021/10/23 18:05:37 by joupark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ft_s(t_nodes *a)
 {
-	int tmp1;
-	int tmp2;
+	int	tmp1;
+	int	tmp2;
 
 	tmp1 = a->head->num;
 	tmp2 = a->head->next->num;
@@ -14,7 +26,8 @@ void	ft_s(t_nodes *a)
 
 void	ft_p(t_nodes *go, t_nodes *co)
 {
-	int num;
+	int	num;
+
 	num = go->head->num;
 	ft_addnode_front(co, num);
 	ft_delete_front(go);
@@ -23,7 +36,8 @@ void	ft_p(t_nodes *go, t_nodes *co)
 
 void	ft_r(t_nodes *go)
 {
-	int num;
+	int	num;
+
 	num = go->head->num;
 	ft_delete_front(go);
 	ft_addnode_back(go, num);
@@ -32,7 +46,8 @@ void	ft_r(t_nodes *go)
 
 void	ft_rr(t_nodes *go)
 {
-	int num;
+	int	num;
+
 	num = go->tail->num;
 	ft_delete_back(go);
 	ft_addnode_front(go, num);
@@ -49,7 +64,7 @@ void	ft_rrr(t_sort vals, t_nodes *a, t_nodes *b)
 		(vals.i)++;
 	}
 	vals.i = 0;
-	while(vals.i < vals.rb)
+	while (vals.i < vals.rb)
 	{
 		ft_rr(b);
 		write(1, "rrb\n", 4);

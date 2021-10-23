@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   itoa.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joupark <joupark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/23 18:02:51 by joupark           #+#    #+#             */
+/*   Updated: 2021/10/23 18:03:35 by joupark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int				ft_numlen(int n)
+int	ft_numlen(int n)
 {
 	int	result;
 
@@ -45,13 +57,14 @@ static	void	ft_fillstr(int n, int i, char *result)
 	}
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*result;
 	int		i;
 
 	i = ft_numlen(n);
-	if (!(result = malloc(sizeof(char) * (i + 1))))
+	result = malloc(sizeof(char) * (i + 1));
+	if (!result)
 		return (NULL);
 	result[i--] = '\0';
 	ft_fillstr(n, i, result);

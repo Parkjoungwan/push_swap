@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   atoi.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joupark <joupark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/23 17:43:49 by joupark           #+#    #+#             */
+/*   Updated: 2021/10/23 19:11:14 by joupark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int		ft_space(char c)
+int	ft_space(char c)
 {
-	if (c == '\t' || c == '\r' || c == '\n' ||
-			c == ' ' || c == '\f' || c == '\v')
+	if (c == '\t' || c == '\r' || c == '\n'
+		|| c == ' ' || c == '\f' || c == '\v')
 		return (1);
 	return (0);
 }
@@ -18,7 +30,13 @@ void	ft_isdigit(char chr)
 	return ;
 }
 
-int		ft_atoi(char *str)
+int	ft_re()
+{
+	write(1, "Error\n", 6);
+	exit(1);
+}
+
+int	ft_atoi(char *str)
 {
 	int				pm;
 	unsigned long	result;
@@ -41,7 +59,7 @@ int		ft_atoi(char *str)
 		result += *str - '0';
 		str++;
 	}
-	if (result >= 9223372036854775808ULL)
-		return (pm == 1 ? -1 : 0);
+	if (result > 2147483647)
+		return (ft_re());
 	return (result * pm);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   optimize5.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joupark <joupark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/23 18:16:51 by joupark           #+#    #+#             */
+/*   Updated: 2021/10/23 18:19:29 by joupark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ft_fiveinit(t_five *f, t_nodes *a, t_nodes *b)
@@ -10,49 +22,48 @@ void	ft_fiveinit(t_five *f, t_nodes *a, t_nodes *b)
 	return ;
 }
 
-int		ft_fivecase2(t_five f)
+int	ft_fivecase2(t_five f)
 {
 	if (f.b1 < f.a3 && f.b1 > f.a2
 		&& f.b2 > f.a2 && f.b2 < f.a3)
-		return 8;
+		return (8);
 	else if (f.b1 > f.a3 && f.b2 > f.a2
-			&& f.b2 < f.a3)
-		return 9;
-	return 10;
+		&& f.b2 < f.a3)
+		return (9);
+	return (10);
 }
 
-
-int		ft_fivecase(t_nodes *a, t_nodes *b)
+int	ft_fivecase(t_nodes *a, t_nodes *b)
 {
 	t_five	f;
-	
+
 	ft_fiveinit(&f, a, b);
 	if (f.b1 < f.a1 && f.b2 < f.a2)
-		return 1;
+		return (1);
 	else if (f.b1 < f.a2 && f.b1 > f.a1
-			&& f.b2 < f.a1)
-		return 2;
+		&& f.b2 < f.a1)
+		return (2);
 	else if (f.b1 > f.a2 && f.b1 < f.a3
-			&& f.b2 < f.a1)
-		return 3;
+		&& f.b2 < f.a1)
+		return (3);
 	else if (f.b1 > f.a3 && f.b2 < f.a1)
-		return 4;
+		return (4);
 	else if (f.b1 > f.a1 && f.b1 < f.a2
-			&& f.b2 > f.a1 && f.b2 < f.a2)
-		return 5;
+		&& f.b2 > f.a1 && f.b2 < f.a2)
+		return (5);
 	else if (f.b1 > f.a2 && f.b1 < f.a3
-			&& f.b2 > f.a1 && f.b2 < f.a2)
-		return 6;
+		&& f.b2 > f.a1 && f.b2 < f.a2)
+		return (6);
 	else if (f.b1 > f.a3 && f.b2 < f.a2
-			&& f.b2 > f.a1)
-		return 7;
-	return ft_fivecase2(f);
+		&& f.b2 > f.a1)
+		return (7);
+	return (ft_fivecase2(f));
 }
 
 void	ft_fortwo(t_nodes *b)
 {
-	int tmp1;
-	int tmp2;
+	int	tmp1;
+	int	tmp2;
 
 	tmp1 = b->head->num;
 	tmp2 = b->head->next->num;
@@ -67,9 +78,9 @@ void	ft_fortwo(t_nodes *b)
 
 void	ft_forfive(t_nodes *a, t_nodes *b)
 {
-	int case_num;
+	int	case_num;
 
-	if(!ft_sorted(a))
+	if (!ft_sorted(a))
 		return ;
 	ft_p(a, b);
 	ft_p(a, b);
@@ -81,4 +92,3 @@ void	ft_forfive(t_nodes *a, t_nodes *b)
 	ft_casediv(case_num, a, b);
 	return ;
 }
-

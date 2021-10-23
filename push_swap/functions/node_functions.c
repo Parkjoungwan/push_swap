@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   node_functions.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joupark <joupark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/23 18:05:50 by joupark           #+#    #+#             */
+/*   Updated: 2021/10/23 18:10:58 by joupark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_node	*makenode(int num)
 {
-	t_node *new;
-	if(!(new = malloc(sizeof(t_node))))
-	{
-		write(1, "error_for_makenode\n", 19); 
+	t_node	*new;
+
+	new = malloc(sizeof(t_node));
+	if (!new)
 		exit(1);
-	}
 	new->num = num;
 	new->next = NULL;
 	new->pre = NULL;
@@ -16,7 +27,8 @@ t_node	*makenode(int num)
 
 void	ft_addnode_front(t_nodes *node, int num)
 {
-	t_node *new;
+	t_node	*new;
+
 	new = makenode(num);
 	if (node->head == NULL)
 	{
@@ -32,9 +44,10 @@ void	ft_addnode_front(t_nodes *node, int num)
 	return ;
 }
 
-void 	ft_addnode_back(t_nodes *node, int num)
+void	ft_addnode_back(t_nodes *node, int num)
 {
-	t_node *new;
+	t_node	*new;
+
 	new = makenode(num);
 	if (node->head == NULL)
 	{
@@ -47,12 +60,12 @@ void 	ft_addnode_back(t_nodes *node, int num)
 		new->pre = node->tail;
 		node->tail = new;
 	}
-	return;
+	return ;
 }
 
 void	ft_delete_back(t_nodes *a)
 {
-	t_node *tmp;
+	t_node	*tmp;
 
 	tmp = a->tail;
 	if (a->head == NULL)
@@ -68,7 +81,7 @@ void	ft_delete_back(t_nodes *a)
 		a->tail = tmp->pre;
 	}
 	free(tmp);
-	return;
+	return ;
 }
 
 void	ft_delete_front(t_nodes *a)
@@ -89,5 +102,5 @@ void	ft_delete_front(t_nodes *a)
 		a->head = tmp->next;
 	}
 	free(tmp);
-	return;
+	return ;
 }
