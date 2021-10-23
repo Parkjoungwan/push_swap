@@ -2,8 +2,10 @@
 
 void	pivot_check(t_sort *vals, t_nodes *a, t_nodes *b)
 {
+	/*
 	if (ft_rrcheck(vals, a))
 		return;
+	*/
 	if (a->head->num >= vals->pivot1)
 	{
 		ft_r(a);
@@ -59,6 +61,7 @@ void	a_to_b(int size, t_nodes *a, t_nodes *b)
 		small_sort(size, a);
 		return ;
 	}
+	/*
 	if (size == 3)
 	{
 		ft_threea(a, b);
@@ -66,6 +69,7 @@ void	a_to_b(int size, t_nodes *a, t_nodes *b)
 	}
 	if (!ft_sorted_size(a, size))
 		return ;
+	*/
 	set_pivot(&vals, a, size);
 	while (vals.i < size)
 		pivot_check(&vals, a, b);

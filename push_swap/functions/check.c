@@ -80,13 +80,14 @@ void			ft_check_node(t_nodes a, t_nodes b)
 }
 
 int			ft_rrcheck(t_sort *val, t_nodes *a)
-{	
+{
+	//need to fix
 	t_node	*tmp;
 	int		*nums;
 	int		cnt;
 
 	cnt = 0;
-	if (!(nums = malloc(sizeof(int) * val->size - val->i)))
+	if (!(nums = malloc(sizeof(int) * (val->size - val->i))))
 		exit(1);
 	tmp = a->head;
 	while (cnt < (val->size - val->i))
@@ -109,7 +110,7 @@ int			ft_rrcheck(t_sort *val, t_nodes *a)
 	if (cnt != -1)
 	{
 		val->i = val->size;
-		return 0;
+		return 1;
 	}
-	return 1;
+	return 0;
 }

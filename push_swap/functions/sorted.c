@@ -47,7 +47,8 @@ int		ft_sorted_size(t_nodes *a, int size)
 			break;
 		}
 		lader = n_lader;
-		tmp = tmp->next;
+		if (tmp->next != NULL)
+			tmp = tmp->next;
 		i++;
 	}
 	return flag;

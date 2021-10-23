@@ -18,7 +18,9 @@ SRCS =  main.c\
 		functions/sorted.c\
 		functions/optimize5_1.c\
 		functions/optimize5_2.c\
-		functions/optimize5_3.c
+		functions/optimize5_3.c\
+		functions/split.c\
+		functions/strlcpy.c
 
 CC = gcc
 

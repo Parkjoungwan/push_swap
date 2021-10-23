@@ -52,12 +52,22 @@ void	init(t_nodes *a, t_nodes *b, char **argv, int argc)
 int		main(int argc, char *argv[])
 {
 	t_nodes	a, b;
-
-	if (argc != 1 && argc != 0)
+	char **tmp;
+	
+	if (argc == 2 && ft_num_strs(argv[1], ' ') > 1)
+	{
+		tmp = ft_split(argv[1], ' ');
+		init(&a, &b, tmp, ft_num_strs(argv[1], ' ') + 1);
+		ft_push_swap(ft_num_strs(argv[1], ' '), &a, &b);
+		ft_free_all(tmp);
+	}
+	else if (argc != 0)
+	{
 		init(&a, &b, argv, argc);
+		ft_push_swap(argc - 1, &a, &b);
+	}
 	else
 		exit(1);
-	ft_push_swap(argc - 1, &a, &b);
 	//ft_check_node(a, b);
 	while (a.head != NULL)
 		ft_delete_back(&a);
